@@ -3,7 +3,7 @@
 namespace App\Domain\Application\Entity;
 
 use App\Domain\Application\Repository\ContentRepository;
-use App\Domain\Auth\User;
+use App\Domain\Auth\Entity\User;
 use App\Domain\Blog\Entity\Post;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;

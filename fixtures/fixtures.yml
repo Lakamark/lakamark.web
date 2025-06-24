@@ -1,0 +1,14 @@
+include:
+    - templates.yml
+
+App\Domain\Auth\Entity\User:
+    user{1..5} (extends user):
+    editor (extends user):
+        username: Editor
+        email: editor@lakamark.com
+    admin (extends user):
+        username: Lakamark
+        email: lakamark@lakamark.com
+
+App\Domain\Blog\Entity\Post:
+    post{1..50} (extends post):

@@ -1,0 +1,18 @@
+App\Domain\Auth\Entity\User:
+    user (template):
+        email: john<current()>\@doe.com
+        username: JohnDo<current()>
+        password: <password('0000')>
+        created_at: <date_create()>
+        updated_at: <date_create()>
+        is_verified: true
+
+App\Domain\Blog\Entity\Post:
+    post (template):
+        title: <sentence(10, true)>
+        slug: <slug()>
+        content: <text()>
+        created_at: <date_create()>
+        updatedAt: <date_create()>
+        is_online: true
+        author: "@user1"

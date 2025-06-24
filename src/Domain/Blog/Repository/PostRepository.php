@@ -5,6 +5,7 @@ namespace App\Domain\Blog\Repository;
 use App\Domain\Blog\Entity\Post;
 use App\Foundation\Orm\AbstractRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -15,6 +16,21 @@ class PostRepository extends AbstractRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Post::class);
+    }
+
+    public function findLatestPosts()
+    {
+        return $this->findAllPublished()
+            ->orderBy('p.createdAt', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findAllPublished(): QueryBuilder
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.isOnline = TRUE');
     }
 
 //    /**

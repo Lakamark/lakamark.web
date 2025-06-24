@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Domain\Auth;
+namespace App\Domain\Auth\Repository;
 
+use App\Domain\Auth\Entity\User;
 use App\Foundation\Orm\AbstractRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;

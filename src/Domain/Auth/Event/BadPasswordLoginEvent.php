@@ -2,7 +2,7 @@
 
 namespace App\Domain\Auth\Event;
 
-use App\Domain\Auth\User;
+use App\Domain\Auth\Entity\User;
 
 class BadPasswordLoginEvent
 {

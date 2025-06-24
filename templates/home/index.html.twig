@@ -12,7 +12,30 @@
     <section class="home-page-section">
         <div class="container">
             <h2 class="h2">Lastest Articles</h2>
-            <div class="gc-3"></div>
+            <div class="gc-3">
+                {% for post in posts %}
+                    <article class="card">
+                        <div class="card__body stacked-content">
+                            <div class="card__thumbnail">
+                                <img src="https://picsum.photos/200" alt="Thumbnail">
+                            </div>
+                            <h2 class="card__title">{{ post.title }}</h2>
+                            <p class="card__text">
+                                <a href="#" title="category">Category</a>
+                            </p>
+                            <div class="card__text">
+                                <p>{{ post.content }}</p>
+                            </div>
+                        </div>
+                        <div class="card__footer j-end">
+                            <a href="#" title="{{ post.title }}">
+                                <span class="card__link" aria-hidden="true"></span>
+                                Learn more...
+                            </a>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
         </div>
     </section>
     <section class="home-page-section">

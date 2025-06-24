@@ -2,7 +2,9 @@
 
 namespace App\Domain\Auth;
 
+use App\Domain\Auth\Entity\User;
 use App\Domain\Auth\Event\BadPasswordLoginEvent;
+use App\Domain\Auth\Repository\UserRepository;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;

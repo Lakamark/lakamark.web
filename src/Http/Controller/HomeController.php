@@ -2,16 +2,18 @@
 
 namespace App\Http\Controller;
 
+use App\Domain\Blog\Repository\PostRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class HomeController extends AbstractController
 {
     #[Route(path: '/', name: 'home')]
-    public function index(): Response
+    public function index(PostRepository $postRepository): Response
     {
+        $posts = $postRepository->findLatestPosts();
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+            'posts' => $posts,
         ]);
     }
 }
