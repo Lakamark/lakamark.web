@@ -1,0 +1,15 @@
+.home-page-section {
+    padding: 2rem;
+    background-color: var(--section-bg);
+    border-top: 1px solid var(--section-border);
+
+    &:nth-child(even) {
+        background-color: var(--body-color)
+    }
+}
+
+.home-page-hero {
+    display: flex;
+    align-items: center;
+    height: 300px;
+}

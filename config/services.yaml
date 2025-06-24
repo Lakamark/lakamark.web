@@ -24,3 +24,8 @@ services:
     App\Http\Controller\:
         resource: '../src/Http/Controller'
         tags: ['controller.service_arguments']
+
+    App\Http\Twig\ViteAssetExtension:
+        arguments:
+            $env: '%kernel.environment%'
+            $assetPath: '%kernel.project_dir%/public/assets'

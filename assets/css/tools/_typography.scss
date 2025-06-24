@@ -1,0 +1,86 @@
+@use "mixins";
+
+%h1,
+.h1 {
+    font-weight: 700;
+    font-style: normal;
+    font-size: 42px;
+
+    @include mixins.b-up(600) {
+        font-size: 40px;
+    }
+}
+
+%h2,
+.h2 {
+    font-weight: 700;
+    font-style: normal;
+    font-size: 32px;
+}
+
+%h3,
+.h3 {
+    font-weight: 700;
+    font-style: normal;
+    font-size: 24px;
+}
+
+%hero-title,
+.hero-title {
+    font-weight: 700;
+    font-style: normal;
+    font-size: 52px;
+}
+
+%hero-text,
+.hero-text {
+    font-size: 32px;
+    font-style: normal;
+    font-weight: normal;
+
+    a {
+        text-decoration: none;
+    }
+}
+
+/**
+    Align text
+*/
+.t-left {
+    text-align: left!important;
+}
+
+.t-right {
+    text-align: right!important;
+}
+
+.t-center {
+    text-align: center!important;
+}
+
+.t-normal {
+    font-style: normal;
+}
+
+.t-bold {
+    font-weight: bold;
+}
+
+.t-uppercase {
+    text-transform: uppercase;
+}
+
+.t-underline {
+    text-decoration: underline;
+}
+
+a.t-underline:hover {
+    text-decoration: none;
+}
+
+.t-danger {
+    color: var(--read);
+}
+.t-muted {
+    color: var(--text-muted);
+}

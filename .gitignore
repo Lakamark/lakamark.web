@@ -25,3 +25,5 @@
 ###< friendsofphp/php-cs-fixer ###
 
 .idea
+/node_modules
+package-lock.json

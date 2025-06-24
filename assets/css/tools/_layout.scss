@@ -1,0 +1,189 @@
+@use "functions";
+@use "_mixins";
+
+/*
+Container
+*/
+:root {
+    --container-padding: 20px;
+    --container-width: calc(100vw - var(--container-padding) *2)
+}
+
+@media screen and (min-width: 900px) {
+    :root {
+        --container-padding: 30px;
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    :root {
+        --container-padding: 20px;
+        --container-width: 1300px;
+    }
+}
+
+.p-relative {
+    position: relative;
+}
+
+.p-absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.wrapper-content {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+}
+
+
+/*
+Container Layout
+*/
+%container,
+.container {
+    box-sizing: border-box;
+    width: 100%;
+    padding-left: calc(50% - var(--container-width) / 2);
+    padding-right: calc(50% - var(--container-width) / 2);
+}
+
+%spacing-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: var(--container-width);
+}
+
+.narrow-container {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*
+Radio contents
+*/
+.content-radio {
+    width: 100%;
+    aspect-ratio: 16/9;
+}
+
+/*
+Align Blocks
+*/
+.d-inline {
+    display: inline;
+}
+
+.d-hidden {
+    display: none;
+}
+
+.no-flex {
+    flex: none;
+}
+
+.flex-content {
+    display: flex!important;
+    align-items: center;
+    justify-content: space-between;
+
+    & > * {
+        min-width: 0;
+    }
+}
+
+/**
+Justify content utilities
+*/
+.j-end {
+    justify-content: flex-end;
+}
+
+.i-stretch {
+    align-items: stretch;
+}
+
+.i-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.j-start {
+    justify-content: flex-start;
+}
+
+.f-start {
+    justify-content: flex-start;
+}
+
+.f-end {
+    justify-content: flex-end;
+}
+
+/**
+    Grid System
+*/
+.gc {
+    width: 100%;
+    display: grid!important;
+    gap: functions.spacing(2);
+    grid-template-columns: repeat(auto-fill, minmax(var(--col, 275px), 1fr));
+}
+
+.gc-2 {
+    width: 100%;
+    display: grid!important;
+    --gap: 2;
+    gap: calc(var(--gap) * var(--spacing));
+    grid-template-columns: 1fr;
+
+    @include mixins.b-up(730) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.gc-3 {
+    width: 100%;
+    display: grid!important;
+    --gap: 2;
+    gap: calc(var(--gap) * var(--spacing));
+    grid-template-columns: 1fr;
+
+    @include mixins.b-up(730) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.gc.gc-fit {
+    grid-template-columns: repeat(auto-fit, minmax(var(--col, 275px), 1fr));
+}
+
+.gc .full-content,
+.gc-2 .full-content {
+    grid-column: 1 / -1;
+}
+
+.gc .gc-end {
+    justify-content: flex-end;
+}
+
+.stacked-content {
+    --gap: 2;
+    display: grid!important;
+    grid-template-columns: 1fr;
+    align-content: flex-start;
+    gap: calc(var(--gap) * var(--spacing));
+
+    & > * {
+        min-width: 0;
+    }
+}

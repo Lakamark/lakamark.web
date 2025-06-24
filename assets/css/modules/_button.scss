@@ -1,0 +1,35 @@
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: .9rem;
+    padding: 10px;
+    border-radius: 5px;
+    line-height: 1.6;
+    font-weight: bold;
+    color: #FFFFFF;
+
+    &:hover {
+        filter: brightness(1.75);
+    }
+}
+
+.btn-full {
+    width: 100%;
+}
+
+.btn-big {
+    padding: 16px;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background-color: var(--btn-primary);
+}
+
+.btn-secondary {
+    background-color: var(--btn-secondary);
+    color: var(--darker-grey);
+}

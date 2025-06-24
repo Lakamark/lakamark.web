@@ -1,0 +1,24 @@
+.form-group {
+    padding: 10px;
+
+    label {
+        display: flex;
+        flex-direction: column;
+        font-weight: bold;
+        padding-bottom: 8px;
+    }
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--form-control-bg);
+    border: 3px solid var(--form-control-border);
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.form-control:focus, .form-control:hover {
+    border-color: var(--accent-color);
+    outline: var(--accent-color);
+}

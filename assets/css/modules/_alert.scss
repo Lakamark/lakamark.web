@@ -1,0 +1,42 @@
+.alert {
+    display: flex;
+    font-size: 20px;
+    width: 100%;
+    padding: 2rem;
+    background-color: var(--alert-bg-color);
+    border-radius: 10px;
+    color: inherit;
+    font-weight: bold;
+}
+
+.alert-success {
+    color: var(--green);
+    border-left: 2px solid var(--green);
+    border-right: 2px solid var(--green);
+    border-top: 2px solid var(--green);
+    border-bottom: 5px solid var(--green);
+}
+
+.alert-danger {
+    color: var(--read);
+    border-left: 2px solid var(--read);
+    border-right: 2px solid var(--read);
+    border-top: 2px solid var(--read);
+    border-bottom: 5px solid var(--read);
+}
+
+.alert-info {
+    color: var(--accent-color);
+    border-left: 2px solid var(--accent-color);
+    border-right: 2px solid var(--accent-color);
+    border-top: 2px solid var(--accent-color);
+    border-bottom: 5px solid var(--accent-color);
+}
+
+.alert-warning {
+    color: var(--yellow);
+    border-left: 2px solid var(--yellow);
+    border-right: 2px solid var(--yellow);
+    border-top: 2px solid var(--yellow);
+    border-bottom: 5px solid var(--yellow);
+}

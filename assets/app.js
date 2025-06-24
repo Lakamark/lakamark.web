@@ -1,10 +1,22 @@
-import './bootstrap.js';
-/*
- * Welcome to your app's main JavaScript file!
- *
- * This file will be included onto the page via the importmap() Twig function,
- * which should already be in your base.html.twig.
- */
-import './styles/app.css';
+import * as Turbo from "@hotwired/turbo"
+import {disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
+import '/css/app.scss'
 
-console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
+document.addEventListener('turbo:load', () => {
+    clearAllBodyScrollLocks() // Enabled all scrolling
+})
+
+// Toggle Header
+const btnHamburger = document.querySelector('#js-hamburger');
+const headerNav = document.querySelector('.header__nav');
+if (btnHamburger) {
+    let isOpen = false;
+    btnHamburger.addEventListener('click', () => {
+        document.querySelector('#main-header').classList.toggle('open-menu');
+        isOpen ? enableBodyScroll(headerNav) : disableBodyScroll(headerNav);
+        isOpen = !isOpen;
+    })
+}
+
+// start turbo
+Turbo.start()

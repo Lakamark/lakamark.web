@@ -1,0 +1,21 @@
+{
+  "name": "lakamark",
+  "license": "MIT",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@hotwired/turbo": "^8.0.13",
+    "body-scroll-lock": "^4.0.0-beta.0",
+    "preact": "^10.26.5"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.10.1",
+    "sass-embedded": "^1.89.2",
+    "vite": "^6.3.5",
+    "vite-plugin-mkcert": "^1.17.8"
+  }
+}

@@ -1,0 +1,95 @@
+@use "tools/functions";
+@use "tools/mixins";
+@use "tools/reset";
+@use "tools/layout";
+@use "tools/typography";
+@use "modules/header";
+@use "modules/card";
+@use "modules/alert";
+@use "modules/form";
+@use "modules/button";
+@use "pages/homepage";
+
+/**
+    Variables
+*/
+:root {
+    --darker-blue: #000814;
+    --night: #050A11;
+    --half-darker-blue: #00122D;
+    --medium-blue: #001D3D;
+    --light-blue: #003566;
+    --accent-color: #0063D0;
+    --yellow: #D3A200;
+    --green: #0D5F00;
+    --read: #B60000;
+    --back: #000000;
+    --darker-grey: #424242;
+    --medium-grey: #E1E1E1;
+    --light-grey: #EBEBEB;
+    --white: #FFFFFF;
+    --body-color: #FFFFFF;
+    --text-color: #000000;
+    --text-muted: #424242;
+    --shadow-color: #A9A9A9;
+    --alert-bg-color: #FFFFFF;
+    --section-bg: #E1E1E1;
+    --section-border: #A9A9A9;
+    --header-bg: #FFFFFFFF;
+    --header-logo-color: #000000;
+    --mobile-menu-bg: #E1E1E1;
+    --header-border-color: #E1E1E1;
+    --card-bg: #FFFFFF;
+    --card-border: #424242;
+    --card-footer: #424242;
+    --form-control-bg: #FFFF;
+    --form-control-border: #424242;
+    --btn-primary: #003566;
+    --btn-secondary: #A9A9A9;
+    --spacing: 8px;
+    --gap: 20px;
+}
+
+/**
+    Night theme
+ */
+@include mixins.night {
+    --accent-color: #0079FF;
+    --green: #168B03;
+    --read: #C90000;
+    --yellow: #FFC300;
+    --body-color: #050A11;
+    --text-color: #FFFFFF;
+    --shadow-color: rgba(0, 0, 0, 0.95);
+    --alert-bg-color: #000814;
+    --section-bg: #070d19;
+    --section-border: #112136;
+    --header-bg: #050A11;
+    --header-logo-color: #FFFFFF;
+    --header-border-color: #08111d;
+    --mobile-menu-bg: #08111d;
+    --card-bg: #08111d;
+    --card-footer: #112136;
+    --card-border: #112136;
+    --form-control-bg: #050A11;
+    --form-control-border: #112136;
+    --btn-primary: #003566;
+    --btn-secondary: #A9A9A9;
+}
+
+/**
+    Generic styles
+*/
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    background-color: var(--body-color);
+    color: var(--text-color);
+    word-break: break-word;
+}
+
+::selection {
+    background-color: var(--accent-color);
+    color: var(--white);
+}
