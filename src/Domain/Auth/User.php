@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Entity;
+namespace App\Domain\Auth;
 
-use App\Repository\UserRepository;
+use App\Domain\Application\Entity\Content;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -45,6 +47,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private bool $isVerified = false;
+
+    /**
+     * @var Collection<int, Content>
+     */
+    #[ORM\OneToMany(targetEntity: Content::class, mappedBy: 'author')]
+    private Collection $contents;
+
+    public function __construct()
+    {
+        $this->contents = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -167,6 +180,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Content>
+     */
+    public function getContents(): Collection
+    {
+        return $this->contents;
+    }
+
+    public function addContent(Content $content): static
+    {
+        if (!$this->contents->contains($content)) {
+            $this->contents->add($content);
+            $content->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContent(Content $content): static
+    {
+        if ($this->contents->removeElement($content)) {
+            // set the owning side to null (unless already changed)
+            if ($content->getAuthor() === $this) {
+                $content->setAuthor(null);
+            }
+        }
 
         return $this;
     }
