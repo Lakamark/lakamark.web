@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping\InheritanceType;
 #[InheritanceType('JOINED')]
 #[ORM\DiscriminatorColumn(name: 'kind', type: Types::STRING)]
 #[ORM\DiscriminatorMap(['post' => Post::class])]
-class Content
+abstract class Content
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
