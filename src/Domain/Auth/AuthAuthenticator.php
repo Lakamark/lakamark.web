@@ -47,7 +47,6 @@ class AuthAuthenticator extends AbstractLoginFormAuthenticator
         $email = (string) $request->request->get('_username', '');
         $request->getSession()->set(SecurityRequestAttributes::LAST_USERNAME, $email);
 
-
         $this->lastPassport = new Passport(
             new UserBadge($email, fn (string $email) => $this->userRepository->findForAuth($email)),
             new PasswordCredentials((string) $request->request->get('_password', '')),

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Twig;
 
 use App\Foundation\Bridge\AssetBridge;
@@ -18,12 +17,11 @@ class ViteAssetExtension extends AbstractExtension
     private AssetBridge $assetBridge;
 
     public function __construct(
-        string                          $env,
-        private readonly string         $assetPath,
+        string $env,
+        private readonly string $assetPath,
         private readonly CacheInterface $cache,
-        private readonly RequestStack   $requestStack,
-    )
-    {
+        private readonly RequestStack $requestStack,
+    ) {
         $this->assetBridge = new AssetBridge(
             $env,
             $this->assetPath,

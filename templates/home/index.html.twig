@@ -21,7 +21,8 @@
                             </div>
                             <h2 class="card__title">{{ post.title }}</h2>
                             <p class="card__text">
-                                <a href="#" title="category">Category</a>
+                                <a href="#" title="{{ post.category.name}}">{{ post.category.name }}</a>
+                                <a href="#" title="{{ post.author.username }}">{{post.author.username}}</a>
                             </p>
                             <div class="card__text">
                                 <p>{{ post.content }}</p>

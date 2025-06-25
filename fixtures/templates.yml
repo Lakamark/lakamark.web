@@ -16,3 +16,8 @@ App\Domain\Blog\Entity\Post:
         updatedAt: <date_create()>
         is_online: true
         author: "@user1"
+
+App\Domain\Blog\Entity\Category:
+    category (template):
+        name: <sentence(5, true)>
+        slug: <slug()>
