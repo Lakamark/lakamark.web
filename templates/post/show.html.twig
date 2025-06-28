@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title post.title %}
+
+{% block body %}
+    <div class="narrow-container">
+        <div class="hero-single-post">
+            <h1 class="h1">{{ post.title }}</h1>
+        </div>
+        <div class="post-info">
+            <div class="post-category">
+                <p>
+                    <span class="t-bold">Category:</span>
+                    <a href="{{ path('blog_category', {slug: post.category.slug}) }}" title="{{ post.category.name }}">{{
+                        post
+                        .category.name
+                        }}</a>
+                </p>
+            </div>
+            <div class="post-username">
+                <p><span class="t-bold">Author:</span> {{ post.author.username }}</p>
+            </div>
+        </div>
+        <div class="post-single-content">
+            {{ post.content }}
+        </div>
+    </div>
+{% endblock %}

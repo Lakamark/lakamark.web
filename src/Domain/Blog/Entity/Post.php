@@ -9,7 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post extends Content
 {
-    #[ORM\ManyToOne(inversedBy: 'post')]
+    #[ORM\ManyToOne(inversedBy: 'posts')]
+    #[ORM\JoinColumn(onDelete: 'SET NULL')]
     private ?Category $category = null;
 
     public function getCategory(): ?Category

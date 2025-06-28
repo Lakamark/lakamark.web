@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Blog" %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="h1">{{ title }}</h1>
+        <div class="gc-3">
+            {% for post in posts %}
+                <article class="card">
+                    <div class="card__body stacked-content">
+                        <div class="card__thumbnail">
+                            <img src="https://picsum.photos/200" alt="Thumbnail">
+                        </div>
+                        <h2 class="card__title">{{ post.title }}</h2>
+                        <p class="card__text">
+                            <a href="#" title="{{ post.author.username }}">{{post.author.username}}</a>
+                        </p>
+                        <div class="card__text">
+                            <p>{{ post.content }}</p>
+                        </div>
+                    </div>
+                    <div class="card__footer j-end">
+                        <a href="{{ path('blog_show', {slug: post.slug}) }}" title="{{ post.title }}">
+                            <span class="card__link" aria-hidden="true"></span>
+                            Learn more...
+                        </a>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+        <div class="pagination">
+            {{ knp_pagination_render(posts) }}
+        </div>
+    </div>
+{% endblock body %}

@@ -8,7 +8,9 @@
 @use "modules/alert";
 @use "modules/form";
 @use "modules/button";
+@use "modules/pagination";
 @use "pages/homepage";
+@use "pages/single_post";
 
 /**
     Variables
@@ -46,6 +48,7 @@
     --form-control-border: #424242;
     --btn-primary: #003566;
     --btn-secondary: #A9A9A9;
+    --sperator-color: #424242;
     --spacing: 8px;
     --gap: 20px;
 }
@@ -75,6 +78,7 @@
     --form-control-border: #112136;
     --btn-primary: #003566;
     --btn-secondary: #A9A9A9;
+    --sperator-color: #112136;
 }
 
 /**

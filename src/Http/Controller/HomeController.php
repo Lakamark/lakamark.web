@@ -11,7 +11,7 @@ final class HomeController extends AbstractController
     #[Route(path: '/', name: 'home')]
     public function index(PostRepository $postRepository): Response
     {
-        $posts = $postRepository->findLatestPosts();
+        $posts = $postRepository->findRecentPosts(3);
 
         return $this->render('home/index.html.twig', [
             'posts' => $posts,

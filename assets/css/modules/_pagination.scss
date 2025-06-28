@@ -1,0 +1,38 @@
+@use "card";
+@use "../tools/functions";
+
+.pagination {
+    display: flex;
+    width:  100%;
+    justify-content: center;
+    overflow-y: hidden;
+    overflow-x: auto;
+    gap: 10px;
+    margin: functions.spacing(2) 0;
+}
+
+.pagination a,
+.pagination.next,
+.pagination.first,
+.pagination.previous,
+.pagination.page {
+    width: 60px;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    @extend .card;
+}
+
+.pagination .current {
+    width: 60px;
+    height: 60px;
+    font-size: 18px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: bold;
+    @extend .card;
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+

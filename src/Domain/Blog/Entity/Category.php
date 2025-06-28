@@ -5,6 +5,7 @@ namespace App\Domain\Blog\Entity;
 use App\Domain\Blog\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
@@ -16,20 +17,23 @@ class Category
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    private string $name = '';
 
     #[ORM\Column(length: 255)]
-    private ?string $slug = null;
+    private string $slug = '';
+
+    #[ORM\Column(type: Types::INTEGER, options: ['unsigned' => true])]
+    private int $posts_count = 0;
 
     /**
      * @var Collection<int, Post>
      */
     #[ORM\OneToMany(targetEntity: Post::class, mappedBy: 'category')]
-    private Collection $post;
+    private Collection $posts;
 
     public function __construct()
     {
-        $this->post = new ArrayCollection();
+        $this->posts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -37,7 +41,7 @@ class Category
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -49,7 +53,7 @@ class Category
         return $this;
     }
 
-    public function getSlug(): ?string
+    public function getSlug(): string
     {
         return $this->slug;
     }
@@ -61,18 +65,30 @@ class Category
         return $this;
     }
 
+    public function getPostsCount(): int
+    {
+        return $this->posts_count;
+    }
+
+    public function setPostsCount(int $posts_count): static
+    {
+        $this->posts_count = $posts_count;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, Post>
      */
-    public function getPost(): Collection
+    public function getPosts(): Collection
     {
-        return $this->post;
+        return $this->posts;
     }
 
     public function addPost(Post $post): static
     {
-        if (!$this->post->contains($post)) {
-            $this->post->add($post);
+        if (!$this->posts->contains($post)) {
+            $this->posts->add($post);
             $post->setCategory($this);
         }
 
@@ -81,7 +97,7 @@ class Category
 
     public function removePost(Post $post): static
     {
-        if ($this->post->removeElement($post)) {
+        if ($this->posts->removeElement($post)) {
             // set the owning side to null (unless already changed)
             if ($post->getCategory() === $this) {
                 $post->setCategory(null);

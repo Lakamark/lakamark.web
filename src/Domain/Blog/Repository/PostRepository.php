@@ -2,9 +2,11 @@
 
 namespace App\Domain\Blog\Repository;
 
+use App\Domain\Blog\Entity\Category;
 use App\Domain\Blog\Entity\Post;
 use App\Foundation\Orm\AbstractRepository;
-use Doctrine\ORM\QueryBuilder;
+use App\Foundation\Orm\IterableQueryBuilder;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -17,43 +19,27 @@ class PostRepository extends AbstractRepository
         parent::__construct($registry, Post::class);
     }
 
-    public function findLatestPosts()
+    public function findRecentPosts(int $limit): IterableQueryBuilder
     {
-        return $this->findAllPublished()
+        return $this->createIterableQuery('p')
+            ->select('p')
+            ->where('p.isOnline = true')
             ->orderBy('p.createdAt', 'DESC')
-            ->setMaxResults(3)
-            ->getQuery()
-            ->getResult();
+            ->setMaxResults($limit);
     }
 
-    public function findAllPublished(): QueryBuilder
+    public function queryAll(?Category $category = null): Query
     {
-        return $this->createQueryBuilder('p')
-            ->orderBy('p.isOnline = TRUE');
+        $query = $this->createQueryBuilder('p')
+            ->select('p')
+            ->where('p.isOnline = true')
+            ->orderBy('p.createdAt', 'DESC');
+
+        if ($category) {
+            $query = $query->where('p.category = :category')
+                ->setParameter('category', $category);
+        }
+
+        return $query->getQuery();
     }
-
-    //    /**
-    //     * @return Post[] Returns an array of Post objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('p.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Post
-    //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
 }

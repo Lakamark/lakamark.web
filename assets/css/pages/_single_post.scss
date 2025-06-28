@@ -1,0 +1,25 @@
+@use '../tools/mixins';
+
+.hero-single-post {
+    padding: 2rem;
+    border-bottom: 1px solid var(--sperator-color);
+}
+.post-info {
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    font-size: 18px;
+    justify-content: space-between;
+
+    @include mixins.b-down(980) {
+        flex-direction: column;
+    }
+}
+
+.post-single-content {
+    padding: 1rem;
+    font-size: 16px;
+    @include mixins.b-down(980) {
+        font-size: 18px;
+    }
+}

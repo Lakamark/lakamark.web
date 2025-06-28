@@ -21,7 +21,6 @@
                             </div>
                             <h2 class="card__title">{{ post.title }}</h2>
                             <p class="card__text">
-                                <a href="#" title="{{ post.category.name}}">{{ post.category.name }}</a>
                                 <a href="#" title="{{ post.author.username }}">{{post.author.username}}</a>
                             </p>
                             <div class="card__text">
@@ -29,7 +28,7 @@
                             </div>
                         </div>
                         <div class="card__footer j-end">
-                            <a href="#" title="{{ post.title }}">
+                            <a href="{{ path('blog_show', {slug: post.slug}) }}" title="{{ post.title }}">
                                 <span class="card__link" aria-hidden="true"></span>
                                 Learn more...
                             </a>
