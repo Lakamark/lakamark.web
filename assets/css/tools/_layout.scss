@@ -187,3 +187,70 @@ Justify content utilities
         min-width: 0;
     }
 }
+
+/**
+Margin & padding utils
+*/
+@for $i from 0 through 5 {
+    body {
+        .pd-#{$i} {
+            padding: functions.spacing($i);
+        }
+
+        .pd-t#{$i} {
+            padding-top: functions.spacing($i);
+        }
+
+        .pd-b#{$i} {
+            padding-bottom: functions.spacing($i);
+        }
+
+        .pd-r#{$i} {
+            padding-right: functions.spacing($i);
+        }
+
+        .pd-l#{$i} {
+            padding-left: functions.spacing($i);
+        }
+
+        .pd-x#{$i} {
+            padding-left: functions.spacing($i);
+            padding-right: functions.spacing($i);
+        }
+
+        .pd-y#{$i} {
+            padding-top: functions.spacing($i);
+            padding-bottom: functions.spacing($i);
+        }
+
+        .mg-#{$i} {
+            margin: functions.spacing($i);
+        }
+
+        .mg-t#{$i} {
+            margin-top: functions.spacing($i);
+        }
+
+        .mg-b#{$i} {
+            margin-bottom: functions.spacing($i);
+        }
+
+        .mg-r#{$i} {
+            margin-right: functions.spacing($i);
+        }
+
+        .mg-l#{$i} {
+            margin-left: functions.spacing($i);
+        }
+
+        .mg-x#{$i} {
+            margin-left: functions.spacing($i);
+            margin-right: functions.spacing($i);
+        }
+
+        .mg-y#{$i} {
+            margin-top: functions.spacing($i);
+            margin-bottom: functions.spacing($i);
+        }
+    }
+}
