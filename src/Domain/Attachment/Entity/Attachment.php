@@ -2,10 +2,7 @@
 
 namespace App\Domain\Attachment\Entity;
 
-use App\Domain\Application\Entity\Content;
 use App\Domain\Attachment\Repository\AttachmentRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Stringable;
@@ -32,17 +29,6 @@ class Attachment implements Stringable
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
-
-    /**
-     * @var Collection<int, Content>
-     */
-    #[ORM\OneToMany(targetEntity: Content::class, mappedBy: 'attachment')]
-    private Collection $contents;
-
-    public function __construct()
-    {
-        $this->contents = new ArrayCollection();
-    }
 
     public function getId(): int
     {
@@ -100,35 +86,5 @@ class Attachment implements Stringable
     public function __toString()
     {
         return $this->fileName;
-    }
-
-    /**
-     * @return Collection<int, Content>
-     */
-    public function getContents(): Collection
-    {
-        return $this->contents;
-    }
-
-    public function addContent(Content $content): static
-    {
-        if (!$this->contents->contains($content)) {
-            $this->contents->add($content);
-            $content->setImage($this);
-        }
-
-        return $this;
-    }
-
-    public function removeContent(Content $content): static
-    {
-        if ($this->contents->removeElement($content)) {
-            // set the owning side to null (unless already changed)
-            if ($content->getImage() === $this) {
-                $content->setImage(null);
-            }
-        }
-
-        return $this;
     }
 }

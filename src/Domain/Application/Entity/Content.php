@@ -44,7 +44,7 @@ abstract class Content
     #[ORM\ManyToOne(inversedBy: 'contents')]
     private ?User $author = null;
 
-    #[ORM\ManyToOne(targetEntity: Attachment::class, cascade: ['persist'], inversedBy: 'contents')]
+    #[ORM\ManyToOne(targetEntity: Attachment::class, cascade: ['persist'])]
     #[ORM\joinColumn(name: 'attachment_id', referencedColumnName: 'id')]
     private ?Attachment $image = null;
 
