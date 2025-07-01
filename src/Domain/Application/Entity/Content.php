@@ -3,6 +3,7 @@
 namespace App\Domain\Application\Entity;
 
 use App\Domain\Application\Repository\ContentRepository;
+use App\Domain\Attachment\Entity\Attachment;
 use App\Domain\Auth\Entity\User;
 use App\Domain\Blog\Entity\Post;
 use App\Domain\Project\Entity\Project;
@@ -42,6 +43,10 @@ abstract class Content
 
     #[ORM\ManyToOne(inversedBy: 'contents')]
     private ?User $author = null;
+
+    #[ORM\ManyToOne(targetEntity: Attachment::class, cascade: ['persist'], inversedBy: 'contents')]
+    #[ORM\joinColumn(name: 'attachment_id', referencedColumnName: 'id')]
+    private ?Attachment $image = null;
 
     public function getId(): ?int
     {
@@ -128,6 +133,18 @@ abstract class Content
     public function setAuthor(?User $author): static
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function getImage(): ?Attachment
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Attachment $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }
