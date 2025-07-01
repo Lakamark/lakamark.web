@@ -21,3 +21,16 @@ App\Domain\Blog\Entity\Category:
     category (template):
         name: <sentence(5, true)>
         slug: <slug()>
+
+App\Domain\Project\Entity\Project:
+    project (template):
+        title: <sentence(10, true)>
+        slug: <slug()>
+        content: <text()>
+        created_at: <date_create()>
+        updatedAt: <date_create()>
+        is_online: true
+        client_name: JohnDo
+        website: "lakamark.com"
+        product_at: <date_create()>
+        author: "@user1"

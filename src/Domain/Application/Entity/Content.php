@@ -5,6 +5,7 @@ namespace App\Domain\Application\Entity;
 use App\Domain\Application\Repository\ContentRepository;
 use App\Domain\Auth\Entity\User;
 use App\Domain\Blog\Entity\Post;
+use App\Domain\Project\Entity\Project;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\InheritanceType;
@@ -13,7 +14,7 @@ use Doctrine\ORM\Mapping\InheritanceType;
 #[ORM\MappedSuperclass]
 #[InheritanceType('JOINED')]
 #[ORM\DiscriminatorColumn(name: 'kind', type: Types::STRING)]
-#[ORM\DiscriminatorMap(['post' => Post::class])]
+#[ORM\DiscriminatorMap(['post' => Post::class, 'project' => Project::class])]
 abstract class Content
 {
     #[ORM\Id]

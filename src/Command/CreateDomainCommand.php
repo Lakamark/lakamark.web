@@ -9,6 +9,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Filesystem\Filesystem;
 
 #[AsCommand(
     name: 'create:domain',
@@ -16,7 +17,12 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 )]
 class CreateDomainCommand extends Command
 {
+    /**
+     * Folders to create in the new domain
+     * @var array|string[]
+     */
     private array $folders = [
+        'Entity',
         'Event',
         'Repository',
         'Listener',
@@ -41,20 +47,29 @@ class CreateDomainCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         $domainName = $input->getArgument('domainName');
+        $directory = "$this->projectDir/src/Domain/$domainName";
+        $fileSystem = new Filesystem();
 
+        // If the user forgets to defin the domain name return an error.
         if (!$domainName) {
             $io->error('You should specify a domain name');
             return Command::FAILURE;
         }
+
+        // If the user wants a simple empty domain
+        // Or the user wants all necessary folders in his domain
         $option = $input->getOption('full');
         if ($option !== false) {
-            // Create all folders
+            // Create all folders (Entity, Repository etc.)
+            foreach ($this->folders as $folder) {
+                $fileSystem->mkdir($directory . '/' . $folder);
+            }
         } else {
+            // Create a simple folder in the domain folder
+            $fileSystem->mkdir($directory);
         }
 
-
-
-        $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
+        $io->success("The domain $domainName was created. Now you can run the command create:entity command");
 
         return Command::SUCCESS;
     }

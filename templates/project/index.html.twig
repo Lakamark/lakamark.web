@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Projects" %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="h1 pd-t2 pd-b2">{{ title }}</h1>
+        <div class="gc-3">
+            {% for project in projects %}
+                <article class="card">
+                    <div class="card__body stacked-content">
+                        <div class="card__thumbnail">
+                            <img src="https://picsum.photos/200" alt="Thumbnail">
+                        </div>
+                        <h2 class="card__title">{{ project.title }}</h2>
+                        <p class="card__text">
+                            <a href="#" title="{{ project.author.username }}">{{project.author.username}}</a>
+                        </p>
+                        <div class="card__text">
+                            <p>{{ project.content }}</p>
+                        </div>
+                    </div>
+                    <div class="card__footer j-end">
+                        <a href="{{ path('project_show', {slug: project.slug}) }}" title="{{ project.title }}">
+                            <span class="card__link" aria-hidden="true"></span>
+                            Learn more...
+                        </a>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+        <div class="pagination">
+            {{ knp_pagination_render(projects) }}
+        </div>
+    </div>
+{% endblock body %}

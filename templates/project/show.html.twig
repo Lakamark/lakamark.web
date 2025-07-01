@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title project.title %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="h1">{{ project.title }}</h1>
+        <div class="project-page">
+            {{ project.content }}
+        </div>
+    </div>
+{% endblock %}

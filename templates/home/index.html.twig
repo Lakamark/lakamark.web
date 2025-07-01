@@ -40,8 +40,28 @@
     </section>
     <section class="home-page-section">
         <div class="container">
-            <h2 class="h2">Lastest Projects</h2>
-            <div class="gc-3"></div>
+            <h2 class="h2 pd-t2 pd-b2">Lastest Projects</h2>
+            <div class="gc-3">
+                {% for project in projects %}
+                    <article class="card">
+                        <div class="card__body stacked-content">
+                            <div class="card__thumbnail">
+                                <img src="https://picsum.photos/200" alt="Thumbnail">
+                            </div>
+                            <h2 class="card__title">{{ project.title }}</h2>
+                            <div class="card__text">
+                                <p>{{ project.content }}</p>
+                            </div>
+                        </div>
+                        <div class="card__footer j-end">
+                            <a href="{{ path('project_show', {slug: project.slug}) }}" title="{{ project.title }}">
+                                <span class="card__link" aria-hidden="true"></span>
+                                Learn more...
+                            </a>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
         </div>
     </section>
 {% endblock %}
